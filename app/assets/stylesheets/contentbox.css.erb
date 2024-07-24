@@ -1,0 +1,21 @@
+html, body {
+  height: 100%; /* Ensure the body covers the full height of the viewport */
+  margin: 0; /* Remove default margin */
+}
+
+body {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ), url(<%= asset_path('img.png') %>) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 50px;
+}
+
+.box {
+    width: 95%;
+    margin: 20px auto 0;
+  }

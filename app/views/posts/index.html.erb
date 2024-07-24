@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%= stylesheet_link_tag "landing", "data-turbo-track": "reload" %>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Landing - Free Bulma template</title>
+        <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    </head>
+
+    <body>
+        <section class="hero is-info is-fullheight">
+            <div class="hero-head">
+                <nav class="navbar">
+                    <div class="container">
+                        <div class="navbar-brand">
+                            <a class="navbar-item" href="https://www.linkedin.com/in/gary-ang/">
+                                <img src=<%= asset_path('linkedin.png') %> alt="Logo">
+                            </a>
+                            <span class="navbar-burger burger" data-target="navbarMenu">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </div>
+                        <div id="navbarMenu" class="navbar-menu">
+                            <div class="navbar-end">
+                                <span class="navbar-item">
+                                    <a class="button is-white is-outlined" href="<%= new_user_registration_path %>">
+                                        <span class="icon">
+                                            <i class="fa fa-home"></i>
+                                        </span>
+                                        <span>Sign up</span>
+                                    </a>
+                                </span>
+                                <span class="navbar-item">
+                                    <a class="button is-white is-outlined" href="<%= new_user_session_path %>">
+                                        <span class="icon">
+                                            <i class="fa fa-superpowers"></i>
+                                        </span>
+                                        <span>Log in</span>
+                                    </a>
+                                </span>
+                                <% if user_signed_in? %>
+                                    <span class="navbar-item">
+                                    <%= form_tag destroy_user_session_path, method: :delete, class: 'inline-form' do %>
+                                        <%= submit_tag 'Log out', class: 'button is-white is-outlined', id: 'logout-button' %>
+                                    <% end %>
+                                    </span>
+                                <% end %>
+                                <span class="navbar-item">
+                                    <a class="button is-white is-outlined" href="https://github.com/diabo1ica/copywriter">
+                                        <span class="icon">
+                                            <i class="fa fa-github"></i>
+                                        </span>
+                                        <span>View Source</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                </div>
+
+                <div class="hero-body">
+                    <div class="container has-text-centered">
+                        <div class="column is-6 is-offset-3">
+                            <h1 class="title" style="color: white;">
+                                GrammarLite
+                            </h1>
+                            <h2 class="subtitle" style="color: white;">
+                                Simple Copywriter App Challenge: Comprehensive Brief for Intern Software Engineer. Basically Grammarly at home.
+                            </h2>
+                            <div class="box"> 
+                                <% unless user_signed_in? %>
+                                    Please Log in or Sign up
+                                <% end %>
+                                <% if user_signed_in? %>
+                                    <a class="button is-info" href="<%= new_post_path %>">
+                                        Begin Copywriting
+                                    </a>
+                                <% end %>
+                                <!--<div class="field is-grouped">
+                                    <p class="control is-expanded">
+                                        <input class="input" type="text" placeholder="Enter your email">
+                                    </p>
+                                    <p class="control">
+                                        <a class="button is-info">
+                                            Subscribe
+                                        </a>
+                                    </p>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </section>
+    </body>
+</html>
