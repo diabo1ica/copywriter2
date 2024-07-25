@@ -32,10 +32,11 @@ class PostsController < ApplicationController
   end
   
   def edit
+
   end
   
   def update
-    if @post.update(post_params)
+    if @post.update(patch_post_params)
       redirect_to posts_path, notice: 'Post was successfully updated.'
     else
       render :edit
@@ -54,6 +55,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def patch_post_params
+    params.require(:post).permit(:content, :enhanced)
   end
 
 end
