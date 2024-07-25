@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_post, only: [:show, :edit, :update]
+
+  include PostsHelper
 
   def index
     @posts = current_user.posts
@@ -10,38 +13,45 @@ class PostsController < ApplicationController
   end
 
   def create
-    # current_user:
-    # This is a method provided by Devise that returns the currently logged-in user. 
-    # It’s available in your controllers and allows you to access the user who is currently authenticated.
-    # .posts:
-    # This leverages the has_many association defined in the User model. 
-    # It returns an ActiveRecord::Relation representing all the posts associated with the current user. 
-    # In other words, it gives you a collection of posts that belong to the currently logged-in user.
     @post = current_user.posts.build(post_params)
 
-    # Generate enhanced content using GPT-3 service
+    # Generate enhanced content using GPT-4 mini service
     gpt_service = GptService.new(@post.content)
     @post.enhanced = gpt_service.generate_content
 
-    Rails.logger.debug("Post Object: #{@post.inspect}")
-    Rails.logger.debug("Enhanced Content: #{@post.enhanced.inspect}")
+    @post.title = extract_title(post_params[:content])
+
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to edit_post_path(@post), notice: 'Post was successfully created.'
     else
-      Rails.logger.error(@post.errors.full_messages)
       render :new
     end
 
   end
-
+  
+  def edit
+  end
+  
+  def update
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Post was successfully updated.'
+    else
+      render :edit
+    end
+  end
+  
   def show
     @post = Post.find(params[:id])
   end
 
   private
 
+  def set_post
+    @post = current_user.posts.find(params[:id])
+  end
+
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:content)
   end
 
 end

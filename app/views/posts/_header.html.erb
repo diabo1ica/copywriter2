@@ -1,0 +1,58 @@
+<head>
+    <%= stylesheet_link_tag "landing", "data-turbo-track": "reload" %>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<nav class="navbar">
+    <div class="container">
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-start navbar-start-custom">
+                <span class="navbar-item">
+                    <a class="button is-white is-outlined" href="<%= new_user_registration_path %>">
+                        <span class="icon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <span> Home </span>
+                    </a>
+                </span>
+            </div>
+            <div class="navbar-end">
+                <% if user_signed_in? %>
+                <span class="navbar-item">
+                    <a class="button is-white is-outlined" href="<%= new_user_registration_path %>">
+                        <span class="icon">
+                            <i class="fa fa-address-card"></i>
+                        </span>
+                        <span>Sign up</span>
+                    </a>
+                </span>
+                <span class="navbar-item">
+                    <a class="button is-white is-outlined" href="<%= new_user_session_path %>">
+                        <span class="icon">
+                            <i class="fa fa-superpowers"></i>
+                        </span>
+                        <span>Log in</span>
+                    </a>
+                </span>
+                <% else %>
+                    <span class="navbar-item">
+                    <%= form_tag destroy_user_session_path, method: :delete, class: 'inline-form' do %>
+                        <%= submit_tag 'Log out', class: 'button is-white is-outlined', id: 'logout-button' %>
+                    <% end %>
+                    </span>
+                <% end %>
+                <span class="navbar-item">
+                    <a class="button is-white is-outlined" href="https://github.com/diabo1ica/copywriter">
+                        <span class="icon">
+                            <i class="fa fa-github"></i>
+                        </span>
+                        <span>View Source</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</nav>

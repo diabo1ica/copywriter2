@@ -1,0 +1,23 @@
+<!-- app/views/posts/edit.html.erb -->
+<%= stylesheet_link_tag "contentbox", "data-turbo-track": "reload" %>
+<article class="panel is-success" style="background-color: white;">
+    <p class="panel-heading" style="color: white; font-size: 2rem;">
+        Edit session content
+    </p>
+  <div class="section">
+    <%= simple_form_for @post do |f| %>
+        <div class="field">
+            <div class="control">
+                <%= f.input :Query, input_html: { class: 'input', value: strip_tags(@post.content.to_s) }, wrapper: false, label_html: { class: 'label' } %>
+            </div>
+        </div>
+        <!-- Rich Text Content Field -->
+        <div class="field">
+            <div class="control">
+            <%= f.rich_text_area :enhanced %>
+            </div>
+        </div>
+        <%= f.button :submit, 'Copywrite', class: "button is-primary" %>
+    <% end %>
+  </div>
+</article>
