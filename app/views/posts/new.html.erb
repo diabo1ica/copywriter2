@@ -1,19 +1,23 @@
-<%= stylesheet_link_tag "contentbox", "data-turbo-track": "reload" %>
-<%= render 'header' %>
-<article class="panel is-success" style="background-color: white;">
-    <p class="panel-heading" style="color: white; font-size: 2rem;"> 
-        GrammarLite
-    </p>
-    <div class="section">
-    <%= simple_form_for @post do |f| %>
-        <!-- Rich Text Content Field -->
-        <div class="field">
-            <div class="control">
-                <%= f.label :content, 'Content' %>
-                <%= f.rich_text_area :content %>
+<section class="hero">
+    <div class="hero-head">
+        <%= render 'header' %>
+    </div>
+    <%= stylesheet_link_tag "contentbox", "data-turbo-track": "reload" %>
+    <article class="panel is-success" style="background-color: white;">
+        <p class="panel-heading" style="color: white; font-size: 2rem;"> 
+            GrammarLite
+        </p>
+        <div class="section">
+        <%= simple_form_for @post do |f| %>
+            <!-- Rich Text Content Field -->
+            <div class="field">
+                <div class="control">
+                    <%= f.label :content, 'Content' %>
+                    <%= f.rich_text_area :content %>
+                </div>
             </div>
-        </div>
-        <%= f.button :submit, 'Send', class: "button is-primary" %>
-    <% end %>
-  </div>
-</article>
+            <%= f.button :submit, 'Send', class: "button is-primary" %>
+        <% end %>
+    </div>
+    </article>
+</section>

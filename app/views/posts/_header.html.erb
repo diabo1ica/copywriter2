@@ -20,7 +20,7 @@
                 </span>
             </div>
             <div class="navbar-end">
-                <% if user_signed_in? %>
+                <% unless user_signed_in? %>
                 <span class="navbar-item">
                     <a class="button is-white is-outlined" href="<%= new_user_registration_path %>">
                         <span class="icon">
