@@ -5,10 +5,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Landing - Free Bulma template</title>
         <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     </head>
 
     <body>
@@ -68,20 +66,38 @@
                 <div class="hero-body">
                     <div class="container has-text-centered">
                         <div class="column is-6 is-offset-3">
-                            <h1 class="title" style="color: white;">
-                                GrammarLite
-                            </h1>
-                            <h2 class="subtitle" style="color: white;">
-                                Simple Copywriter App Challenge: Comprehensive Brief for Intern Software Engineer. Basically Grammarly at home.
-                            </h2>
-                            <div class="box"> 
-                                <% unless user_signed_in? %>
-                                    Please Log in or Sign up
-                                <% end %>
+                            <% unless user_signed_in? %>
+                                <h1 class="title" style="color: white;">
+                                    GrammarLite
+                                </h1>
+                                <h2 class="subtitle" style="color: white;">
+                                    Simple Copywriter App Challenge: Comprehensive Brief for Intern Software Engineer. Basically Grammarly at home. Please Log in or Sign up.
+                                </h2>
+                            <% end %>
                                 <% if user_signed_in? %>
                                     <a class="button is-info" href="<%= new_post_path %>">
                                         Begin Copywriting
                                     </a>
+                                    <article class="panel is-success" style="background-color: white;">
+                                        <p class="panel-heading"> GrammarLite</p>
+                                        <div class="panel-block">
+                                            <p class="control has-icons-left">
+                                            <input class="input is-success" type="text" placeholder="Search" />
+                                            <span class="icon is-left">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </span>
+                                            </p>
+                                        </div>
+
+                                        <% @posts.each do |post| %>
+                                            <a class="panel-block">
+                                            <span class="panel-icon">
+                                                <i class="fa fa-book" aria-hidden="true"></i>
+                                            </span>
+                                            <%= post.title %>
+                                            </a>
+                                        <% end %>
+                                    </article>
                                 <% end %>
                                 <!--<div class="field is-grouped">
                                     <p class="control is-expanded">
@@ -93,7 +109,6 @@
                                         </a>
                                     </p>
                                 </div>-->
-                            </div>
                         </div>
                     </div>
                 </div>

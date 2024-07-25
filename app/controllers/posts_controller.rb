@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    
+    @posts = current_user.posts
   end
 
   def new
@@ -17,11 +18,20 @@ class PostsController < ApplicationController
     # It returns an ActiveRecord::Relation representing all the posts associated with the current user. 
     # In other words, it gives you a collection of posts that belong to the currently logged-in user.
     @post = current_user.posts.build(post_params)
+
+    # Generate enhanced content using GPT-3 service
+    gpt_service = GptService.new(@post.content)
+    @post.enhanced = gpt_service.generate_content
+
+    Rails.logger.debug("Post Object: #{@post.inspect}")
+    Rails.logger.debug("Enhanced Content: #{@post.enhanced.inspect}")
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
     else
+      Rails.logger.error(@post.errors.full_messages)
       render :new
     end
+
   end
 
   def show
