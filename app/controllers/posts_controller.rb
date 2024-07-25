@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_post, only: [:show, :edit, :update]
 
   include PostsHelper
 
   def index
-    @posts = current_user.posts
+    if user_signed_in?
+      @posts = current_user.posts
+    end
   end
 
   def new
