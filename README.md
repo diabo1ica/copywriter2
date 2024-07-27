@@ -6,7 +6,8 @@ Users can create Notes where they can:
 1. Login or Sign up
 2. Enter a query, sentence or short paragraph
 3. Receive feedback or content from the AI chatbox based on their query
-4. Edit and style the content generted by the AI  
+4. Edit and style the content generted by the AI
+
 Basic user authentication is available in this app. Visitors must have a valid account to use the app's service.
 If visitors were to try to paste the link to the feature i.e.: /posts/new, they will be immediately redirected to the Log in page
 Additionaly, any visitors who make use of the app's features without a valid account/token will be redirected to a warning page
