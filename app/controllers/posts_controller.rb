@@ -4,16 +4,19 @@ class PostsController < ApplicationController
 
   include PostsHelper
 
+  # Landing page
   def index
     if user_signed_in?
       @posts = current_user.posts
     end
   end
 
+  # Load the form
   def new
     @post = Post.new
   end
 
+  # Call OpenAI API and save the content 
   def create
     @post = current_user.posts.build(post_params)
 
@@ -35,6 +38,7 @@ class PostsController < ApplicationController
 
   end
   
+  # Update the selected form
   def update
     if @post.update(patch_post_params)
       redirect_to posts_path, notice: 'Post was successfully updated.'
@@ -49,6 +53,7 @@ class PostsController < ApplicationController
 
   private
 
+  # Required to edit existing post
   def set_post
     @post = current_user.posts.find(params[:id])
   end
