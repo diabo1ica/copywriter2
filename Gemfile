@@ -12,8 +12,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 # Memory profiling
-# gem 'rack-mini-profiler'
-
+# 
 gem 'memory_profiler'
 
 # Use the Puma web server [https://github.com/puma/puma]
